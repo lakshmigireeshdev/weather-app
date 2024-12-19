@@ -38,10 +38,9 @@ const Weather = () => {
 
   const search = async () => {
     try {
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${myCity}&appid=8ac5c4d57ba6a4b3dfcf622700447b1e&units=metric`
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${myCity}&appid=8ac5c4d57ba6a4b3dfcf622700447b1e&units=metric`;
       const response = await fetch(url);
       const data = await response.json();
-      console.log(data);
       const icon = allIcons[data.weather[0].icon] || clear_icon;
       setWeatherData({
         humidity: data.main.humidity,
@@ -55,8 +54,6 @@ const Weather = () => {
     }
   };
 
-  console.log(weatherData);
-  
   return (
     <div className="weather">
       <div className="search-bar">
@@ -65,7 +62,9 @@ const Weather = () => {
           onChange={(e) => setMyCity(e.target.value)}
           placeholder="Search"
         />
-        <button onClick={search}><img src={search_icon} alt="" /></button>
+        <button onClick={search}>
+          <img src={search_icon} alt="" />
+        </button>
       </div>
       <img src={weatherData.icon} alt="" className="weather-icon" />
       <p className="temprature">{weatherData.temperature}°c</p>
